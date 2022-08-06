@@ -23,7 +23,11 @@ public class HotelRepositoryImpl implements IHotelRepository{
 		// TODO Auto-generated method stub\
 		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
-		return myQuery.getResultList();
+		List<Hotel> hoteles = myQuery.getResultList();
+		for(Hotel h: hoteles) {
+			h.getHabitacion().size();
+		}
+		return hoteles;
 	}
 
 	@Override
@@ -59,7 +63,7 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@Override
 	public List<Hotel> buscarHotelJoinWhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h, Habitacion ha WHERE h = ha.hotel AND ha.tipo = :tipoHabitacion",Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
@@ -67,7 +71,7 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}

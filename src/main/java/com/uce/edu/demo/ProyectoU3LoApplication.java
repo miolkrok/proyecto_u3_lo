@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.service.IHotelService;
 
@@ -28,37 +29,64 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+//		//INNER
+//		LOG.info("INNER JOIN ");
+//		List<Hotel> listHotel = this.hotelService.buscarHotelInnerJoin("Familiar");
+//		for(Hotel h : listHotel) {
+//			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+//		}
+//		//INNER todos
+//		LOG.info("INNER JOIN ");
+//		List<Hotel> listHotelJoin = this.hotelService.buscarHotelInnerJoinS();
+//		for(Hotel h : listHotelJoin) {
+//			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+//		}
+//		
+//		//LEFT
+//		LOG.info("LEFT JOIN ");
+//		List<Hotel> listHotelLeft = this.hotelService.buscarHotelOuterJoinLeft("Familiar");
+//		for(Hotel h : listHotelLeft) {
+//			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+//		}
+//		//LEFT todos
+//		LOG.info("LEFT JOIN ");
+//		List<Hotel> listHotelLeftB = this.hotelService.buscarHotelOuterJoinLeftS();
+//		for(Hotel h : listHotelLeftB) {
+//			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+//		}
+//		
+//		//RIGHT
+//		LOG.info("RIGHT JOIN ");
+//		List<Hotel> listHotelRight = this.hotelService.buscarHotelOuterJoinRight("Familiar");
+//		for(Hotel h : listHotelRight) {
+//			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+//		}
+		
+		//WHERE
+		LOG.info("RELACIONAMIENTO WHERE ");
+		List<Hotel> listHotelWhere = this.hotelService.buscarHotelJoinWhere("Familiar");
+		for(Hotel h : listHotelWhere) {
+			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
+		}
+		
 		//INNER
-		LOG.info("INNER JOIN ");
+		LOG.info("INNER JOIN EAGER/LAZY ");
 		List<Hotel> listHotel = this.hotelService.buscarHotelInnerJoin("Familiar");
 		for(Hotel h : listHotel) {
-			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+			LOG.info("Hotel 2: " +h.getNombre() +" "+ h.getDireccion());
+			for(Habitacion ha:h.getHabitacion()) {
+				LOG.info("Hotel2 habitacion: " + ha);
+			}
+			
 		}
-		//INNER todos
-		LOG.info("INNER JOIN ");
-		List<Hotel> listHotelJoin = this.hotelService.buscarHotelInnerJoinS();
-		for(Hotel h : listHotelJoin) {
-			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
-		}
-		
-		//LEFT
-		LOG.info("LEFT JOIN ");
-		List<Hotel> listHotelLeft = this.hotelService.buscarHotelOuterJoinLeft("Familiar");
-		for(Hotel h : listHotelLeft) {
-			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
-		}
-		//LEFT todos
-		LOG.info("LEFT JOIN ");
-		List<Hotel> listHotelLeftB = this.hotelService.buscarHotelOuterJoinLeftS();
-		for(Hotel h : listHotelLeftB) {
-			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
-		}
-		
-		//RIGHT
-		LOG.info("RIGHT JOIN ");
-		List<Hotel> listHotelRight = this.hotelService.buscarHotelOuterJoinRight("Familiar");
-		for(Hotel h : listHotelRight) {
-			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
+		//FETCH
+		LOG.info("JOIN FETCH ");
+		List<Hotel> listHotelFetch = this.hotelService.buscarHotelJoinFetch("Familiar");
+		for(Hotel h : listHotelFetch) {
+			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
+			for(Habitacion ha:h.getHabitacion()) {
+				LOG.info("Hotel2 habitacion: " + ha);
+			}
 		}
 	}
 
