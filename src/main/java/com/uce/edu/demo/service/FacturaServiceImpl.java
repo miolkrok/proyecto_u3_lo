@@ -10,11 +10,11 @@ import com.uce.edu.demo.repository.IFacturaRepository;
 import com.uce.edu.demo.repository.modelo.Factura;
 
 @Service
-public class FacturaServiceImpl implements IFacturaService{
+public class FacturaServiceImpl implements IFacturaService {
 
 	@Autowired
 	private IFacturaRepository facturaRepository;
-	
+
 	@Override
 	public List<Factura> buscarFacturaInnerJoin(BigDecimal subtotal) {
 		// TODO Auto-generated method stub

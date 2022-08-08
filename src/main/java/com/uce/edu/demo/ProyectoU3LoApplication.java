@@ -1,5 +1,6 @@
 package com.uce.edu.demo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,8 +10,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
+import com.uce.edu.demo.service.IFacturaService;
 import com.uce.edu.demo.service.IHotelService;
 
 @SpringBootApplication
@@ -19,6 +22,8 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 	@Autowired
 	private IHotelService hotelService;
 	
+	@Autowired
+	private IFacturaService facturaService;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoU3LoApplication.class);
 	public static void main(String[] args) {
@@ -63,30 +68,48 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //		}
 		
 		//WHERE
-		LOG.info("RELACIONAMIENTO WHERE ");
-		List<Hotel> listHotelWhere = this.hotelService.buscarHotelJoinWhere("Familiar");
-		for(Hotel h : listHotelWhere) {
-			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
-		}
+//		LOG.info("RELACIONAMIENTO WHERE ");
+//		List<Hotel> listHotelWhere = this.hotelService.buscarHotelJoinWhere("Familiar");
+//		for(Hotel h : listHotelWhere) {
+//			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
+//		}
 		
 		//INNER
-		LOG.info("INNER JOIN EAGER/LAZY ");
-		List<Hotel> listHotel = this.hotelService.buscarHotelInnerJoin("Familiar");
-		for(Hotel h : listHotel) {
-			LOG.info("Hotel 2: " +h.getNombre() +" "+ h.getDireccion());
-			for(Habitacion ha:h.getHabitacion()) {
-				LOG.info("Hotel2 habitacion: " + ha);
-			}
-			
-		}
+//		LOG.info("INNER JOIN EAGER/LAZY ");
+//		List<Hotel> listHotel = this.hotelService.buscarHotelInnerJoin("Familiar");
+//		for(Hotel h : listHotel) {
+//			LOG.info("Hotel 2: " +h.getNombre() +" "+ h.getDireccion());
+//			for(Habitacion ha:h.getHabitacion()) {
+//				LOG.info("Hotel2 habitacion: " + ha);
+//			}
+//			
+//		}
 		//FETCH
-		LOG.info("JOIN FETCH ");
-		List<Hotel> listHotelFetch = this.hotelService.buscarHotelJoinFetch("Familiar");
-		for(Hotel h : listHotelFetch) {
-			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
-			for(Habitacion ha:h.getHabitacion()) {
-				LOG.info("Hotel2 habitacion: " + ha);
-			}
+//		LOG.info("JOIN FETCH ");
+//		List<Hotel> listHotelFetch = this.hotelService.buscarHotelJoinFetch("Familiar");
+//		for(Hotel h : listHotelFetch) {
+//			LOG.info("Hotel: " +h.getNombre()+ " "+ h.getDireccion());
+//			for(Habitacion ha:h.getHabitacion()) {
+//				LOG.info("Hotel2 habitacion: " + ha);
+//			}
+//		}
+		//INNER JOIN
+		LOG.info("INNER JOIN ");
+		List<Factura> listaFacturaJoin = this.facturaService.buscarFacturaInnerJoin(new BigDecimal(20));
+		for(Factura f :listaFacturaJoin) {
+			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+		}
+		//LEFT JOIN
+		LOG.info("LEFT JOIN ");
+		List<Factura> listaFacturaLeft = this.facturaService.buscarFacturaOuterJoinLeft(new BigDecimal(20));
+		for(Factura f :listaFacturaLeft) {
+			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+		}
+		//RIGHT JOIN
+		LOG.info("RIGHT JOIN ");
+		List<Factura> listaFacturaRight = this.facturaService.buscarFacturaOuterJoinRight(new BigDecimal(20));
+		for(Factura f :listaFacturaRight) {
+			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
 		}
 	}
 

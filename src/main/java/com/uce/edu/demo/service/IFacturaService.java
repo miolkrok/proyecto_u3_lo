@@ -6,9 +6,11 @@ import java.util.List;
 import com.uce.edu.demo.repository.modelo.Factura;
 
 public interface IFacturaService {
-	
+
 	public List<Factura> buscarFacturaInnerJoin(BigDecimal subtotal);
+
 	public List<Factura> buscarFacturaOuterJoinLeft(BigDecimal subtotal);
+
 	public List<Factura> buscarFacturaOuterJoinRight(BigDecimal subtotal);
 
 }

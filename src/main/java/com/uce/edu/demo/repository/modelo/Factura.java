@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity(name = "Factura2")
 @Table(name = "factura2")
 public class Factura {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_generator")
 	@SequenceGenerator(name = "name_generator", sequenceName = "fact_id_seq", allocationSize = 1)
@@ -27,11 +27,11 @@ public class Factura {
 	private LocalDateTime fecha;
 	@Column(name = "fact_numero")
 	private String numero;
-	
-	@OneToMany(mappedBy = "factura",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Detalle> detalleFact;
 
-	//SET Y GET
+	// SET Y GET
 	public Integer getId() {
 		return id;
 	}
@@ -68,11 +68,5 @@ public class Factura {
 	public String toString() {
 		return "Factura [id=" + id + ", fecha=" + fecha + ", numero=" + numero + ", detalleFact=" + detalleFact + "]";
 	}
-
-
-
-
-
-
 
 }

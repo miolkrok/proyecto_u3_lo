@@ -22,7 +22,7 @@ public class FacturaRepositoryImpl implements IFacturaRepository{
 	@Override
 	public List<Factura> buscarFacturaInnerJoin(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}
@@ -30,7 +30,7 @@ public class FacturaRepositoryImpl implements IFacturaRepository{
 	@Override
 	public List<Factura> buscarFacturaOuterJoinLeft(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f LEFT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f LEFT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}
@@ -38,7 +38,7 @@ public class FacturaRepositoryImpl implements IFacturaRepository{
 	@Override
 	public List<Factura> buscarFacturaOuterJoinRight(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f RIGHT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f RIGHT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}
