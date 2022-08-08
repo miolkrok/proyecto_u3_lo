@@ -28,7 +28,7 @@ public class Factura {
 	@Column(name = "fact_numero")
 	private String numero;
 
-	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Detalle> detalleFact;
 
 	// SET Y GET
@@ -66,7 +66,7 @@ public class Factura {
 
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", fecha=" + fecha + ", numero=" + numero + ", detalleFact=" + detalleFact + "]";
+		return "Factura [id=" + id + ", fecha=" + fecha + ", numero=" + numero +  "]";
 	}
 
 }

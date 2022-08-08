@@ -14,15 +14,16 @@ import com.uce.edu.demo.repository.modelo.Factura;
 
 @Repository
 @Transactional
-public class FacturaRepositoryImpl implements IFacturaRepository{
+public class FacturaRepositoryImpl implements IFacturaRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Override
 	public List<Factura> buscarFacturaInnerJoin(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
+				"SELECT f FROM Factura2 f JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal", Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}
@@ -30,7 +31,9 @@ public class FacturaRepositoryImpl implements IFacturaRepository{
 	@Override
 	public List<Factura> buscarFacturaOuterJoinLeft(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f LEFT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
+				"SELECT f FROM Factura2 f LEFT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",
+				Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}
@@ -38,7 +41,29 @@ public class FacturaRepositoryImpl implements IFacturaRepository{
 	@Override
 	public List<Factura> buscarFacturaOuterJoinRight(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura2 f RIGHT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",Factura.class);
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
+				"SELECT f FROM Factura2 f RIGHT JOIN f.detalleFact df WHERE df.subtotal >= :datoSubtotal",
+				Factura.class);
+		myQuery.setParameter("datoSubtotal", subtotal);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Factura> buscarFacturaJoinWhere(BigDecimal subtotal) {
+		// TODO Auto-generated method stub
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
+				"SELECT f FROM Factura2 f, Detalle2 df WHERE f = df.factura AND df.subtotal >= :datoSubtotal",
+				Factura.class);
+		myQuery.setParameter("datoSubtotal", subtotal);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Factura> buscarFacturaJoinFetch(BigDecimal subtotal) {
+		// TODO Auto-generated method stub
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
+				"SELECT f FROM Factura2 f JOIN FETCH f.detalleFact df WHERE df.subtotal >= :datoSubtotal",
+				Factura.class);
 		myQuery.setParameter("datoSubtotal", subtotal);
 		return myQuery.getResultList();
 	}

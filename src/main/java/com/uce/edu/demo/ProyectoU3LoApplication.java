@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.Detalle;
 import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
@@ -94,23 +95,41 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //			}
 //		}
 		//INNER JOIN
-		LOG.info("INNER JOIN ");
-		List<Factura> listaFacturaJoin = this.facturaService.buscarFacturaInnerJoin(new BigDecimal(20));
-		for(Factura f :listaFacturaJoin) {
+//		LOG.info("INNER JOIN ");
+//		List<Factura> listaFacturaJoin = this.facturaService.buscarFacturaInnerJoin(new BigDecimal(20));
+//		for(Factura f :listaFacturaJoin) {
+//			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+//		}
+//		//LEFT JOIN
+//		LOG.info("LEFT JOIN ");
+//		List<Factura> listaFacturaLeft = this.facturaService.buscarFacturaOuterJoinLeft(new BigDecimal(20));
+//		for(Factura f :listaFacturaLeft) {
+//			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+//		}
+//		//RIGHT JOIN
+//		LOG.info("RIGHT JOIN ");
+//		List<Factura> listaFacturaRight = this.facturaService.buscarFacturaOuterJoinRight(new BigDecimal(20));
+//		for(Factura f :listaFacturaRight) {
+//			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+//		}
+		
+		//WHERE
+		LOG.info("RELACIONAMIENTO WHERE ");
+		List<Factura> listFacturaWhere = this.facturaService.buscarFacturaJoinWhere(new BigDecimal(20));
+		for(Factura f : listFacturaWhere) {
 			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
 		}
-		//LEFT JOIN
-		LOG.info("LEFT JOIN ");
-		List<Factura> listaFacturaLeft = this.facturaService.buscarFacturaOuterJoinLeft(new BigDecimal(20));
-		for(Factura f :listaFacturaLeft) {
+		
+		//FETCH JOIN
+		LOG.info("JOIN FETCH");
+		List<Factura> listFacturaFetch = this.facturaService.buscarFacturaJoinFetch(new BigDecimal(20));
+		for(Factura f : listFacturaFetch) {
 			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+			for(Detalle df:f.getDetalleFact()) {
+				LOG.info("Factura detalle: " +df);
+			}
 		}
-		//RIGHT JOIN
-		LOG.info("RIGHT JOIN ");
-		List<Factura> listaFacturaRight = this.facturaService.buscarFacturaOuterJoinRight(new BigDecimal(20));
-		for(Factura f :listaFacturaRight) {
-			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
-		}
+		
 	}
 
 }

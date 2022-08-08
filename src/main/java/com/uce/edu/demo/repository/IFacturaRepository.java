@@ -12,4 +12,8 @@ public interface IFacturaRepository {
 	public List<Factura> buscarFacturaOuterJoinLeft(BigDecimal subtotal);
 
 	public List<Factura> buscarFacturaOuterJoinRight(BigDecimal subtotal);
+	
+	public List<Factura> buscarFacturaJoinWhere(BigDecimal subtotal);
+	
+	public List<Factura> buscarFacturaJoinFetch(BigDecimal subtotal);
 }

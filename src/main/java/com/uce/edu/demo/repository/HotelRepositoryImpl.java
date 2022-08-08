@@ -13,18 +13,19 @@ import com.uce.edu.demo.repository.modelo.Hotel;
 
 @Repository
 @Transactional
-public class HotelRepositoryImpl implements IHotelRepository{
-	
+public class HotelRepositoryImpl implements IHotelRepository {
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion) {
 		// TODO Auto-generated method stub\
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager
+				.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		List<Hotel> hoteles = myQuery.getResultList();
-		for(Hotel h: hoteles) {
+		for (Hotel h : hoteles) {
 			h.getHabitacion().size();
 		}
 		return hoteles;
@@ -33,29 +34,33 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@Override
 	public List<Hotel> buscarHotelInnerJoinS() {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha ",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN h.habitacion ha ",
+				Hotel.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
 	public List<Hotel> buscarHotelOuterJoinLeft(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h LEFT JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
-	
+
 	@Override
 	public List<Hotel> buscarHotelOuterJoinLeftS() {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN h.habitacion ha ",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h LEFT JOIN h.habitacion ha ",
+				Hotel.class);
 		return myQuery.getResultList();
 	}
 
 	@Override
 	public List<Hotel> buscarHotelOuterJoinRight(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h RIGHT JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h RIGHT JOIN h.habitacion ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
@@ -63,7 +68,8 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@Override
 	public List<Hotel> buscarHotelJoinWhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h, Habitacion ha WHERE h = ha.hotel AND ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h, Habitacion ha WHERE h = ha.hotel AND ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
@@ -71,7 +77,8 @@ public class HotelRepositoryImpl implements IHotelRepository{
 	@Override
 	public List<Hotel> buscarHotelJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		TypedQuery<Hotel> myQuery = this.entityManager.createQuery("SELECT h FROM Hotel h JOIN FETCH h.habitacion ha WHERE ha.tipo = :tipoHabitacion",Hotel.class);
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h JOIN FETCH h.habitacion ha WHERE ha.tipo = :tipoHabitacion", Hotel.class);
 		myQuery.setParameter("tipoHabitacion", tipoHabitacion);
 		return myQuery.getResultList();
 	}
