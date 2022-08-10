@@ -10,12 +10,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.ITransferenciaRepository;
 import com.uce.edu.demo.repository.modelo.Detalle;
 import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.service.IFacturaService;
 import com.uce.edu.demo.service.IHotelService;
+import com.uce.edu.demo.service.ITransferenciaService;
 
 @SpringBootApplication
 public class ProyectoU3LoApplication implements CommandLineRunner{
@@ -25,6 +27,9 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IFacturaService facturaService;
+	
+	@Autowired
+	private ITransferenciaService transferenciaService;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoU3LoApplication.class);
 	public static void main(String[] args) {
@@ -113,23 +118,25 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
 //		}
 		
-		//WHERE
-		LOG.info("RELACIONAMIENTO WHERE ");
-		List<Factura> listFacturaWhere = this.facturaService.buscarFacturaJoinWhere(new BigDecimal(20));
-		for(Factura f : listFacturaWhere) {
-			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
-		}
+//		//WHERE
+//		LOG.info("RELACIONAMIENTO WHERE ");
+//		List<Factura> listFacturaWhere = this.facturaService.buscarFacturaJoinWhere(new BigDecimal(20));
+//		for(Factura f : listFacturaWhere) {
+//			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+//		}
+//		
+//		//FETCH JOIN
+//		LOG.info("JOIN FETCH");
+//		List<Factura> listFacturaFetch = this.facturaService.buscarFacturaJoinFetch(new BigDecimal(20));
+//		for(Factura f : listFacturaFetch) {
+//			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
+//			for(Detalle df:f.getDetalleFact()) {
+//				LOG.info("Factura detalle: " +df);
+//			}
+//		}
 		
-		//FETCH JOIN
-		LOG.info("JOIN FETCH");
-		List<Factura> listFacturaFetch = this.facturaService.buscarFacturaJoinFetch(new BigDecimal(20));
-		for(Factura f : listFacturaFetch) {
-			LOG.info("Factura: " +f.getNumero()+ " " + f.getFecha());
-			for(Detalle df:f.getDetalleFact()) {
-				LOG.info("Factura detalle: " +df);
-			}
-		}
-		
+//		this.transferenciaService.realizarTransferencia("58463", "96512", new BigDecimal(5));
+		this.transferenciaService.realizarTransferenciaFachada("96512", "58463", new BigDecimal(50));
 	}
 
 }

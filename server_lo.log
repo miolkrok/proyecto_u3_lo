@@ -1,0 +1,14 @@
+2022-08-09 18:32:19 INFO  HotelServiceImpl:48 - Transaccion activa Service: false
+2022-08-09 18:32:19 INFO  HotelRepositoryImpl:87 - Transaccion activa: true
+2022-08-09 18:32:39 INFO  HotelServiceImpl:48 - Transaccion activa Service: false
+2022-08-09 19:41:50 INFO  HotelServiceImpl:48 - Transaccion activa Service: false
+2022-08-09 19:48:57 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:48:57 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:49:05 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:49:05 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:53:17 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:53:17 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:56:26 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 19:56:26 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 20:02:27 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
+2022-08-09 20:02:27 INFO  CuentaBancariaRepositoryImpl:35 - Transaccion activa: false
