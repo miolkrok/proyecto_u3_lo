@@ -24,7 +24,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	private ITransferenciaRepository transferenciaRepository;
 	
 	@Override
-	@Transactional(value = TxType.REQUIRES_NEW)
+	@Transactional(value = TxType.REQUIRED)
 	public void realizarTransferencia(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
 		//0. Busque la cta Origen (obtener el saldo)
@@ -54,6 +54,20 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 	public void realizarTransferenciaFachada(String ctaOrigen, String ctaDestino, BigDecimal monto) {
 		// TODO Auto-generated method stub
 		this.realizarTransferenciaFachada(ctaOrigen, ctaDestino, monto);
+	}
+
+	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public Transferencia buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return this.transferenciaRepository.buscar(id);
+	}
+
+	@Override
+	@Transactional
+	public void eliminar(Integer id) {
+		// TODO Auto-generated method stub
+		this.transferenciaRepository.eliminar(id);
 	}
 
 }
