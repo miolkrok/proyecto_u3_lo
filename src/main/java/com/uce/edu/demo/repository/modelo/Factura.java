@@ -20,7 +20,7 @@ public class Factura {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_generator")
-	@SequenceGenerator(name = "name_generator", sequenceName = "fact_id_seq", allocationSize = 1)
+	@SequenceGenerator(name = "name_generator", sequenceName = "fact2_id_seq", allocationSize = 1)
 	@Column(name = "fact_id")
 	private Integer id;
 	@Column(name = "fact_fecha")

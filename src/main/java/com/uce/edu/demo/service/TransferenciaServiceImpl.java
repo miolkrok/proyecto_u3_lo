@@ -49,10 +49,9 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 //		if(ctaOrigen.getTipo().equals("Ahorros")) {
 //			throw new RuntimeException();
 //		}
-		if(saldoFinal.compareTo(monto)>0) {
-			throw new RuntimeException();
-		}
-		
+//		if(saldoFinal.compareTo(monto)>0) {
+//			throw new RuntimeException();
+//		}
 		
 	}
 

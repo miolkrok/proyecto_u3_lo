@@ -136,7 +136,10 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //		}
 		
 //		this.transferenciaService.realizarTransferencia("96512", "58463", new BigDecimal(110));
-		this.transferenciaService.realizarTransferenciaFachada("96512", "58463", new BigDecimal(1));
+//		this.transferenciaService.realizarTransferenciaFachada("96512", "58463", new BigDecimal(1));
+		
+		
+		
 	}
 
 }
