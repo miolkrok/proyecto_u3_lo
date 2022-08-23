@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.deber.Factura;
 import com.uce.edu.demo.repository.modelo.deber.FacturaElectronicaTO;
 
