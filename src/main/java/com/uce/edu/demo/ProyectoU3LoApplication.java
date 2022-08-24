@@ -59,6 +59,8 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //		for(Hotel h : listHotelLeft) {
 //			LOG.info("Hotel " +h.getNombre() + h.getDireccion());
 //		}
+//		
+//		listHotelLeft.forEach(hotel -> System.out.println("Hotel: " + hotel.getNombre()));
 //		//LEFT todos
 //		LOG.info("LEFT JOIN ");
 //		List<Hotel> listHotelLeftB = this.hotelService.buscarHotelOuterJoinLeftS();
