@@ -193,7 +193,7 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 		detalles.add(producto2.getCodigoBarras());
 		detalles.add(producto3.getCodigoBarras());
 		
-		this.compraProductosService.registrarCompraProducto("1718496944", "485162152",detalles);
+//		this.compraProductosService.registrarCompraProducto("1718496944", "485162152",detalles);
 		
 	}
 
