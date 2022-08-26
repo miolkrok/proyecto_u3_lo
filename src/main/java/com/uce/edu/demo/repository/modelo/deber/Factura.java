@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,15 +30,14 @@ public class Factura {
 	private String numero;
 	@Column(name = "fact_fecha")
 	private LocalDateTime fecha;
-	@Column(name = "fact_monto")
-	private BigDecimal monto;
+
 	
-	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<DetalleFactura> detalleFactura;
 	
 	@ManyToOne
-	@JoinColumn(name = "fact_id_clientes")
-	private Clientes cliente;
+	@JoinColumn(name = "fact_id_cliente")
+	private Cliente cliente;
 
 	public Integer getId() {
 		return id;
@@ -63,14 +63,6 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
-	public BigDecimal getMonto() {
-		return monto;
-	}
-
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
-
 	public List<DetalleFactura> getDetalleFactura() {
 		return detalleFactura;
 	}
@@ -79,19 +71,21 @@ public class Factura {
 		this.detalleFactura = detalleFactura;
 	}
 
-	public Clientes getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Clientes cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
 	@Override
 	public String toString() {
-		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", monto=" + monto
-				+ ", detalleFactura=" + detalleFactura + ", cliente=" + cliente + "]";
+		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", detalleFactura=" + detalleFactura
+				+ ", cliente=" + cliente + "]";
 	}
+
+
 	
 	
 	

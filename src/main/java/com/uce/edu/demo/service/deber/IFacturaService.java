@@ -1,9 +1,22 @@
 package com.uce.edu.demo.service.deber;
 
-import com.uce.edu.demo.repository.modelo.deber.FacturaElectronicaTO;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.uce.edu.demo.repository.modelo.deber.Factura;
 
 public interface IFacturaService {
+
+	public List<Factura> buscarFacturaInnerJoin(BigDecimal subtotal);
+
+	public List<Factura> buscarFacturaOuterJoinLeft(BigDecimal subtotal);
+
+	public List<Factura> buscarFacturaOuterJoinRight(BigDecimal subtotal);
 	
-	public void crearFacturaElectronica(FacturaElectronicaTO facturaElectronicaTO);
+	public List<Factura> buscarFacturaJoinWhere(BigDecimal subtotal);
+	
+	public List<Factura> buscarFacturaJoinFetch(BigDecimal subtotal);
+	
+	public BigDecimal ingresarFactura(String cedula, String numero, List<String> codigo);
 
 }

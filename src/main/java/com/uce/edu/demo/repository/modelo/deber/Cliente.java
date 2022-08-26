@@ -12,13 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "clientes")
-public class Clientes {
+@Entity(name = "Cliente3")
+@Table(name = "cliente3")
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_generator")
-	@SequenceGenerator(name = "name_generator", sequenceName = "clie2_id_seq", allocationSize = 1)
+	@SequenceGenerator(name = "name_generator", sequenceName = "clie3_id_seq", allocationSize = 1)
 	@Column(name = "clie_id")
 	private Integer id;
 	@Column(name = "clie_nombre")

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.uce.edu.demo.repository.modelo.Factura;
+
 
 @Entity
 @Table(name = "detalle_factura")
@@ -31,11 +31,11 @@ public class DetalleFactura {
 	private Integer numeroItems;
 	
 	@ManyToOne 
-	@JoinColumn(name = "deta_id_factura")
+	@JoinColumn(name = "defa_id_factura")
 	private Factura factura;
 	
 	@ManyToOne
-	@JoinColumn(name = "deta_id_producto")
+	@JoinColumn(name = "defa_id_producto")
 	private Producto producto;
 
 	public Integer getId() {

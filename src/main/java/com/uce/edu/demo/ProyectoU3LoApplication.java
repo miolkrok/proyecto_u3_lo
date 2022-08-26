@@ -1,6 +1,7 @@
 package com.uce.edu.demo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,13 +12,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.repository.ITransferenciaRepository;
+import com.uce.edu.demo.repository.deber.IClienteRepository;
+import com.uce.edu.demo.repository.deber.IProductoRepository;
 import com.uce.edu.demo.repository.modelo.Detalle;
 import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
-import com.uce.edu.demo.service.IFacturaService;
+import com.uce.edu.demo.repository.modelo.deber.Cliente;
+import com.uce.edu.demo.repository.modelo.deber.Producto;
+import com.uce.edu.demo.service.deber.IClienteService;
+import com.uce.edu.demo.service.deber.IFacturaService;
 import com.uce.edu.demo.service.IHotelService;
 import com.uce.edu.demo.service.ITransferenciaService;
+import com.uce.edu.demo.service.deber.IGestorCompraProductosService;
 
 @SpringBootApplication
 public class ProyectoU3LoApplication implements CommandLineRunner{
@@ -25,11 +32,23 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 	@Autowired
 	private IHotelService hotelService;
 	
+//	@Autowired
+//	private IFacturaService facturaService;
+	
 	@Autowired
-	private IFacturaService facturaService;
+	private IFacturaService factService;
 	
 	@Autowired
 	private ITransferenciaService transferenciaService;
+	
+	@Autowired
+	private IGestorCompraProductosService compraProductosService;
+	
+	@Autowired
+	private IClienteRepository clienteRepository;
+	
+	@Autowired
+	private IProductoRepository productoRepository;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ProyectoU3LoApplication.class);
 	public static void main(String[] args) {
@@ -140,7 +159,41 @@ public class ProyectoU3LoApplication implements CommandLineRunner{
 //		this.transferenciaService.realizarTransferencia("96512", "58463", new BigDecimal(110));
 //		this.transferenciaService.realizarTransferenciaFachada("96512", "58463", new BigDecimal(1));
 		
+		/////////////////////////////////////tarea 31-32////////////////////////////
+		Cliente cliente=new Cliente();
+		cliente.setCedula("1718496944");
+		cliente.setNombre("Luis");
+		cliente.setApellido("Ortiz");
+		cliente.setNumeroTarjeta("9584-1847");
+//		this.clienteRepository.insertar(cliente);
 		
+		Producto producto=new Producto();
+		producto.setNombre("Manzana");
+		producto.setCodigoBarras("Cd.16");
+		producto.setPrecio(new BigDecimal(0.50));
+		producto.setStock(20);
+//		this.productoRepository.insertar(producto);
+		
+		Producto producto2=new Producto();
+		producto2.setNombre("Coca-Cola");
+		producto2.setCodigoBarras("Cd.15");
+		producto2.setPrecio(new BigDecimal(3.00));
+		producto2.setStock(100);
+//		this.productoRepository.insertar(producto2);
+		
+		Producto producto3=new Producto();
+		producto3.setNombre("Galak");
+		producto3.setCodigoBarras("Cd.101");
+		producto3.setPrecio(new BigDecimal(0.50));
+		producto3.setStock(85);
+//		this.productoRepository.insertar(producto3);
+		
+		List<String> detalles=new ArrayList<>();
+		detalles.add(producto.getCodigoBarras());
+		detalles.add(producto2.getCodigoBarras());
+		detalles.add(producto3.getCodigoBarras());
+		
+		this.compraProductosService.registrarCompraProducto("1718496944", "485162152",detalles);
 		
 	}
 
